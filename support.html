@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Sage</title>
+  <meta name="description" content="Get help with Sage. Frequently asked questions, contact information, and troubleshooting guides." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --forest: #1a2e1a; --sage: #5a7a3a; --sage-lt: #eaf3de;
+      --amber: #e8c547; --cream: #f7f5ef; --muted: #4a5e4a; --white: #ffffff;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--cream); color: var(--forest); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 5%;
+      background: rgba(247,245,239,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26,46,26,.08);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-icon { width: 34px; height: 34px; background: var(--sage); border-radius: 9px; display: flex; align-items: center; justify-content: center; }
+    .nav-icon svg { width: 18px; height: 18px; fill: var(--cream); }
+    .nav-name { font-family: var(--serif); font-size: 20px; color: var(--forest); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 14px; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-cta { background: var(--sage); color: var(--cream) !important; padding: 8px 20px; border-radius: 8px; font-size: 14px; }
+
+    .page-hero {
+      background: var(--forest); padding: 5rem 5% 4rem;
+      position: relative; overflow: hidden;
+    }
+    .page-hero-orb {
+      position: absolute; right: -60px; top: -60px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(90,122,58,.14); pointer-events: none;
+    }
+    .page-eyebrow { font-size: 11px; letter-spacing: 2px; color: rgba(232,197,71,.8); text-transform: uppercase; margin-bottom: 1rem; }
+    .page-title { font-family: var(--serif); font-size: clamp(32px,5vw,48px); color: var(--cream); line-height: 1.1; margin-bottom: 1rem; }
+    .page-sub { font-size: 16px; color: rgba(247,245,239,.6); max-width: 440px; line-height: 1.7; }
+
+    .content { max-width: 720px; margin: 0 auto; padding: 4rem 5% 6rem; }
+
+    .contact-card {
+      background: var(--white);
+      border: 1px solid rgba(26,46,26,.09);
+      border-radius: 16px; padding: 2rem;
+      display: flex; align-items: center; gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .contact-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--sage-lt); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 24px; height: 24px; stroke: var(--sage); stroke-width: 1.75; fill: none; }
+    .contact-title { font-size: 15px; font-weight: 500; color: var(--forest); margin-bottom: 4px; }
+    .contact-sub { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .contact-link {
+      display: inline-block; font-size: 14px; font-weight: 500;
+      color: var(--sage); border-bottom: 1px solid rgba(90,122,58,.3);
+      transition: border-color .2s;
+    }
+    .contact-link:hover { border-color: var(--sage); }
+
+    .faq-section h2 {
+      font-family: var(--serif); font-size: 26px; color: var(--forest);
+      margin-bottom: 1.5rem;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(26,46,26,.08);
+      padding: 1.25rem 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-size: 15px; font-weight: 500; color: var(--forest);
+      cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      user-select: none;
+    }
+    .faq-q svg { width: 18px; height: 18px; stroke: var(--muted); stroke-width: 2; fill: none; flex-shrink: 0; transition: transform .2s; }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 14px; color: var(--muted); line-height: 1.75;
+      max-height: 0; overflow: hidden;
+      transition: max-height .3s ease, padding .3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-top: .75rem; }
+
+    footer {
+      background: var(--forest);
+      border-top: 1px solid rgba(247,245,239,.08);
+      padding: 2.25rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 12px; color: rgba(247,245,239,.35); }
+    .footer-links { display: flex; gap: 1.75rem; }
+    .footer-links a { font-size: 13px; color: rgba(247,245,239,.5); transition: color .2s; }
+    .footer-links a:hover { color: rgba(247,245,239,.85); }
+
+    @media (max-width: 680px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .contact-card { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-logo">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 22c1.66-1.4 3.73-2 6.18-2 3 0 5-2 5-5 0-2-1-4-4-4 2 0 3.5-1.5 3.5-3.5S11 4 9 4c-2 0-3 1-3 3 0 0 3-1 3 3 0 1-1 2-3 2C4.7 12 3 13.3 3 15"/></svg>
+    </div>
+    <a href="index.html" class="nav-name">Sage</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html#features">Features</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="index.html#download" class="nav-cta">Get the app</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-orb" aria-hidden="true"></div>
+  <p class="page-eyebrow">Help centre</p>
+  <h1 class="page-title">Support</h1>
+  <p class="page-sub">Can't find what you're looking for? We're here to help.</p>
+</div>
+
+<main class="content">
+
+  <div class="contact-card">
+    <div class="contact-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </div>
+    <div>
+      <p class="contact-title">Email support</p>
+      <p class="contact-sub">We aim to respond within 24 hours on weekdays.</p>
+      <a href="mailto:support@getsageapp.com" class="contact-link">support@getsageapp.com</a>
+    </div>
+  </div>
+
+  <section class="faq-section">
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
+        How do I add items to my pantry?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">You can add items to your pantry manually using the "Add manually" button on the Pantry screen, by scanning a barcode, or by scanning a grocery receipt. Scanned items land in your Shop screen first — tap a location (Fridge, Pantry, or Freezer) and then "Move to pantry" to add them.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
+        What is Miso and how do I use it?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Miso is your AI chef, powered by Claude. Open the Miso screen from the Home tab and ask anything — "What can I make with chicken and rice?" or "Plan my meals for this week." Miso uses your pantry contents to give you personalised suggestions. Free accounts get 6 Miso chats per day; Sage Pro gets 500 per month.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
+        How does receipt scanning work?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Tap "Scan receipt" on the Shop screen, then photograph your grocery receipt. Sage uses AI to read the items, categories, and prices from the receipt and adds them to your Shop list. You can then assign each item a location and move them to your pantry. Free accounts get 15 receipt scans per day.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
+        What is Sage Pro and what does it include?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Sage Pro is the premium subscription. It unlocks 500 Miso AI chats per month (up from 6/day), receipt scanning, and priority access to new features. You can subscribe from the paywall screen within the app, or from Settings.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
+        How do I cancel my Sage Pro subscription?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Sage Pro is billed through Google Play. To cancel, open the Google Play Store app → tap your profile → Payments &amp; subscriptions → Subscriptions → Sage → Cancel subscription. Your Pro access continues until the end of the current billing period.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
+        How do I delete my account?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Go to Settings → scroll to the bottom → tap "Delete account". This permanently deletes your account, pantry, shopping list, meal plans, receipts, and all other data within 24 hours. This action cannot be undone.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
+        I forgot my password. How do I reset it?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">On the login screen, tap "Forgot password?" and enter your email address. You'll receive a 6-digit code — enter it on the next screen, then set your new password.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
+        The app isn't working as expected. What should I do?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">First, try closing and reopening the app. If that doesn't help, check your internet connection — Sage requires an active connection to sync pantry data and use AI features. If the issue persists, email us at support@getsageapp.com with a description of what happened and we'll look into it.</div>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  <span class="footer-copy">© 2026 Sage. All rights reserved.</span>
+  <nav class="footer-links" aria-label="Footer navigation">
+    <a href="privacy.html">Privacy policy</a>
+    <a href="support.html">Support</a>
+    <a href="mailto:support@getsageapp.com">Contact</a>
+  </nav>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(btn); } });
+  });
+</script>
+
+</body>
+</html>
