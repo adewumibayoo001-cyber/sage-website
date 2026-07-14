@@ -189,6 +189,46 @@
     .scan-chip { display: flex; align-items: center; gap: 6px; background: rgba(90,122,58,.12); border: 1px solid rgba(90,122,58,.22); border-radius: 20px; padding: 5px 10px; font-size: 11px; color: rgba(247,245,239,.7); }
     .scan-chip svg { width: 12px; height: 12px; stroke: var(--sage); fill: none; stroke-width: 2; }
 
+
+    /* MISO AVATAR */
+    .miso-avatar-wrap {
+      position: relative;
+      width: 160px; height: 160px;
+      flex-shrink: 0;
+    }
+    .miso-avatar-ring-outer {
+      position: absolute; inset: -12px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(90,122,58,.3);
+      animation: spin-slow 12s linear infinite;
+    }
+    .miso-avatar-ring-inner {
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(232,197,71,.2);
+      animation: spin-slow 8s linear infinite reverse;
+    }
+    .miso-avatar-dot {
+      position: absolute; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--amber);
+      top: -4px; left: 50%; transform: translateX(-50%);
+      box-shadow: 0 0 8px rgba(232,197,71,.6);
+    }
+    .miso-avatar-img {
+      width: 160px; height: 160px; border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(90,122,58,.5);
+      box-shadow: 0 0 0 6px rgba(90,122,58,.1), 0 20px 50px rgba(0,0,0,.4);
+      animation: float-miso 4s ease-in-out infinite;
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes float-miso {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
     /* MISO SECTION */
     .miso-section { background: var(--moss); padding: 7rem 5%; position: relative; overflow: hidden; }
     .miso-bg-orb { position: absolute; right: -5%; top: -20%; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(232,197,71,.06) 0%, transparent 70%); pointer-events: none; }
@@ -520,7 +560,17 @@
 <section class="miso-section" id="miso">
   <div class="miso-bg-orb" aria-hidden="true"></div>
   <div class="miso-inner">
-    <div class="miso-chat-card reveal" role="img" aria-label="Example Miso conversation">
+    <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:2rem;">
+      <!-- Miso Avatar -->
+      <div class="miso-avatar-wrap" aria-label="Miso the dinosaur chef">
+        <div class="miso-avatar-ring-outer">
+          <div class="miso-avatar-dot"></div>
+        </div>
+        <div class="miso-avatar-ring-inner"></div>
+        <img class="miso-avatar-img" src="miso-avatar.png" alt="Miso, Fridzo's AI dinosaur chef" />
+      </div>
+      <!-- Chat card -->
+      <div class="miso-chat-card" role="img" aria-label="Example Miso conversation">
       <div class="chat-message">
         <div class="chat-avatar" aria-hidden="true">🦕</div>
         <div class="chat-bubble">Morning! You've got chicken, spinach, and pasta in. Want me to build something around those?</div>
@@ -540,6 +590,7 @@
       <div class="chat-message">
         <div class="chat-avatar" aria-hidden="true">🦕</div>
         <div class="chat-bubble">Done. Tuesday dinner is sorted. I'll remind you to use the spinach first.</div>
+      </div>
       </div>
     </div>
     <div class="reveal reveal-delay-1">
