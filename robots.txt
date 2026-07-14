@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://sageapp.app/sitemap.xml
+Sitemap: https://www.fridzo.app/sitemap.xml
