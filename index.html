@@ -266,9 +266,111 @@
       .bento-a,.bento-b,.bento-c,.bento-d,.bento-e,.bento-f,.bento-g { grid-column: span 1; grid-row: unset; }
       footer { flex-direction: column; align-items: flex-start; }
     }
+    /* SCREENSHOT SHOWCASE */
+    .screens-section { padding: 6rem 5% 5rem; background: var(--moss); overflow: hidden; }
+    .screens-strip {
+      display: flex; gap: 20px; margin-top: 3rem;
+      justify-content: center; align-items: flex-end;
+      flex-wrap: nowrap;
+    }
+    .screen-item { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0; }
+    .screen-phone {
+      width: 130px; height: 270px;
+      border-radius: 22px;
+      border: 1.5px solid rgba(90,122,58,.4);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,.5), inset 0 1px 0 rgba(247,245,239,.06);
+      transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s;
+      background: #0e1e0e;
+    }
+    .screen-phone:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 32px 64px rgba(0,0,0,.6); }
+    .screen-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .screen-label {
+      font-size: 11px; color: rgba(247,245,239,.45);
+      letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+    }
+    /* Offset heights for layered visual rhythm */
+    .screen-item:nth-child(1) .screen-phone { height: 250px; }
+    .screen-item:nth-child(2) .screen-phone { height: 280px; }
+    .screen-item:nth-child(3) .screen-phone { height: 265px; }
+    .screen-item:nth-child(4) .screen-phone { height: 255px; }
+
+    /* FREE VS PRO */
+    .pricing-section { padding: 6rem 5%; background: var(--ink); }
+    .pricing-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; margin-top: 3rem;
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .pricing-col {
+      padding: 2.5rem 2rem;
+      background: rgba(247,245,239,.02);
+    }
+    .pricing-col-pro {
+      background: rgba(90,122,58,.08);
+      border-left: 1px solid var(--glass-border);
+      position: relative;
+    }
+    .pricing-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--amber); color: var(--ink);
+      font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .pricing-name { font-family: var(--serif); font-size: 24px; color: var(--cream); margin-bottom: .4rem; }
+    .pricing-price {
+      font-size: 32px; font-weight: 600; color: var(--cream);
+      margin-bottom: .3rem; line-height: 1;
+    }
+    .pricing-price span { font-size: 14px; font-weight: 400; color: var(--muted); }
+    .pricing-sub { font-size: 12px; color: var(--muted); margin-bottom: 2rem; }
+    .pricing-rows { display: flex; flex-direction: column; gap: 0; }
+    .pricing-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px; color: rgba(247,245,239,.75);
+    }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-check {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .check-yes { background: rgba(90,122,58,.25); }
+    .check-yes svg { width: 11px; height: 11px; stroke: #7eb85a; stroke-width: 2.5; fill: none; }
+    .check-amber { background: rgba(232,197,71,.15); }
+    .check-amber svg { width: 11px; height: 11px; stroke: var(--amber); stroke-width: 2.5; fill: none; }
+    .check-no { background: rgba(247,245,239,.06); }
+    .check-no svg { width: 11px; height: 11px; stroke: rgba(247,245,239,.2); stroke-width: 2; fill: none; }
+    .pricing-cta {
+      display: block; text-align: center;
+      background: var(--amber); color: var(--ink);
+      padding: 13px; border-radius: 10px;
+      font-size: 14px; font-weight: 600;
+      margin-top: 2rem; transition: opacity .2s;
+    }
+    .pricing-cta:hover { opacity: .88; }
+    .pricing-cta-ghost {
+      display: block; text-align: center;
+      border: 1px solid var(--border); color: var(--muted);
+      padding: 13px; border-radius: 10px;
+      font-size: 14px; margin-top: 2rem; transition: border-color .2s, color .2s;
+    }
+    .pricing-cta-ghost:hover { border-color: rgba(247,245,239,.3); color: var(--cream); }
+
+    @media (max-width: 700px) {
+      .screens-strip { gap: 12px; }
+      .screen-phone { width: 100px !important; height: 210px !important; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-col-pro { border-left: none; border-top: 1px solid var(--glass-border); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
       .hero-bg-orb-1, .phone-glow-1, .phone-glow-2 { animation: none; }
+      .screen-phone { transition: none; }
     }
   </style>
 </head>
@@ -459,6 +561,128 @@
       <p class="step-title">Shop smarter</p>
       <p class="step-desc">Low-stock items appear on your list automatically. Check them off in store and they move straight into your pantry.</p>
     </div>
+  </div>
+</section>
+
+<!-- SCREENSHOT SHOWCASE -->
+<section class="screens-section">
+  <p class="section-eyebrow reveal">The full picture</p>
+  <h2 class="section-title reveal reveal-delay-1">Every screen, built to be used.</h2>
+  <div class="screens-strip reveal reveal-delay-1">
+    <div class="screen-item">
+      <div class="screen-phone">
+        <img src="assets/screen-home.jpg" alt="Fridzo home screen" loading="lazy" />
+      </div>
+      <span class="screen-label">Home</span>
+    </div>
+    <div class="screen-item">
+      <div class="screen-phone">
+        <img src="assets/screen-pantry.jpg" alt="Fridzo pantry screen" loading="lazy" />
+      </div>
+      <span class="screen-label">Pantry</span>
+    </div>
+    <div class="screen-item">
+      <div class="screen-phone">
+        <img src="assets/screen-plan.jpg" alt="Fridzo meal plan screen" loading="lazy" />
+      </div>
+      <span class="screen-label">Meal Plan</span>
+    </div>
+    <div class="screen-item">
+      <div class="screen-phone">
+        <img src="assets/screen-shop.jpg" alt="Fridzo shop screen" loading="lazy" />
+      </div>
+      <span class="screen-label">Shop</span>
+    </div>
+  </div>
+</section>
+
+<!-- FREE VS PRO -->
+<section class="pricing-section">
+  <p class="section-eyebrow reveal">Transparent pricing</p>
+  <h2 class="section-title reveal reveal-delay-1">Free forever.<br>Pro when you need more.</h2>
+  <div class="pricing-grid reveal reveal-delay-2">
+
+    <!-- FREE -->
+    <div class="pricing-col">
+      <p class="pricing-name">Free</p>
+      <p class="pricing-price">$0 <span>/ forever</span></p>
+      <p class="pricing-sub">No card. No trial. Just the app.</p>
+      <div class="pricing-rows">
+        <div class="pricing-row">
+          <div class="pricing-check check-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Pantry tracker
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Barcode scanning
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Shopping list
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Meal planning
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          3 Miso AI chats per day
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span style="color:var(--muted)">Receipt scanning</span>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span style="color:var(--muted)">Spend tracking</span>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span style="color:var(--muted)">500 Miso messages per month</span>
+        </div>
+      </div>
+      <a href="https://play.google.com/store" class="pricing-cta-ghost">Download free</a>
+    </div>
+
+    <!-- PRO -->
+    <div class="pricing-col pricing-col-pro">
+      <div class="pricing-badge">✦ Pro</div>
+      <p class="pricing-name">Fridzo Pro</p>
+      <p class="pricing-price">$9.99 <span>/ month</span></p>
+      <p class="pricing-sub">Cancel any time via Google Play.</p>
+      <div class="pricing-rows">
+        <div class="pricing-row">
+          <div class="pricing-check check-yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Everything in Free
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-amber"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          500 Miso AI messages per month
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-amber"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Receipt scanning (15 scans per day)
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-amber"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Spend tracking by category
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-amber"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Nutrition tracking
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-amber"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          All achievements and badges
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-check check-amber"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Cross-device shopping list sync
+        </div>
+      </div>
+      <a href="https://play.google.com/store" class="pricing-cta">Get Fridzo Pro</a>
+    </div>
+
   </div>
 </section>
 
