@@ -209,13 +209,36 @@
     /* HOW IT WORKS */
     .steps-section { padding: 7rem 5%; background: var(--ink); }
     .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 3.5rem; position: relative; }
-    .steps-grid::before { content: ''; position: absolute; top: 28px; left: calc(33.33%); right: calc(33.33%); height: 1px; background: var(--border); }
+    .steps-grid::before { content: ''; position: absolute; top: 28px; left: calc(33.33% + 28px); right: calc(33.33% + 28px); height: 1px; background: linear-gradient(90deg, var(--glass-border), rgba(232,197,71,.3), var(--glass-border)); }
     .step { padding: 0 1.5rem; }
     .step:first-child { padding-left: 0; }
     .step:last-child { padding-right: 0; }
-    .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 22px; color: var(--amber); margin-bottom: 1.4rem; }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 22px; color: var(--amber); margin-bottom: 1.4rem; box-shadow: 0 0 0 4px rgba(232,197,71,.06); }
     .step-title { font-size: 16px; font-weight: 500; color: var(--cream); margin-bottom: .6rem; }
     .step-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+
+    /* FAQ */
+    .faq-section { padding: 6rem 5%; background: var(--moss); }
+    .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 0; cursor: pointer;
+      font-size: 15px; font-weight: 500; color: var(--cream);
+      gap: 1rem; user-select: none; list-style: none;
+    }
+    .faq-q svg { width: 18px; height: 18px; stroke: var(--muted); stroke-width: 2; fill: none; flex-shrink: 0; transition: transform .25s; }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); stroke: var(--amber); }
+    .faq-a {
+      font-size: 14px; color: var(--muted); line-height: 1.75;
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.25rem; }
 
     /* CTA */
     .cta-section { background: var(--moss); padding: 7rem 5%; text-align: center; position: relative; overflow: hidden; }
@@ -398,10 +421,10 @@
   <div class="hero-content">
     <div class="hero-badge">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5z"/></svg>
-      <span>AI-powered · Powered by Claude</span>
+      <span>Powered by Claude AI · Free to start</span>
     </div>
     <h1>Your kitchen,<br><em>finally sorted.</em></h1>
-    <p class="hero-sub">Fridzo tracks what's in your pantry, scans your grocery receipts, and lets Miso your AI chef turn it all into dinner.</p>
+    <p class="hero-sub">Fridzo tracks what's in your fridge, reads your grocery receipts, and lets Miso your AI chef figure out dinner.</p>
     <div class="hero-actions">
       <a href="https://play.google.com/store" class="btn-primary" id="download">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20.5v-17c0-.83 1-1.3 1.7-.8l15 8.5c.67.38.67 1.32 0 1.7l-15 8.5c-.7.5-1.7.03-1.7-.8z"/></svg>
@@ -450,7 +473,7 @@
     <div class="bento-card bento-a reveal">
       <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 3v18M16 3v18M2 9h20M2 15h20"/></svg></div>
       <p class="bento-title">Pantry tracker</p>
-      <p class="bento-desc">Everything in your fridge, freezer, and cupboards with expiry dates, quantities, and locations. Know what you have before you shop.</p>
+      <p class="bento-desc">What's in the fridge, what's in the freezer, what's buried at the back of the cupboard — with expiry dates so nothing sneaks up on you.</p>
       <div class="bento-visual">
         <div class="bento-pill">
           <div class="bento-pill-left"><span class="bento-pill-emoji">🥩</span><div><div class="bento-pill-name">Beef mince</div><div class="bento-pill-qty">500g · Freezer</div></div></div>
@@ -469,27 +492,27 @@
     <div class="bento-card bento-b reveal reveal-delay-1">
       <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9V5a2 2 0 012-2h4M3 15v4a2 2 0 002 2h4M21 9V5a2 2 0 00-2-2h-4M21 15v4a2 2 0 01-2 2h-4M7 12h10"/></svg></div>
       <p class="bento-title">Barcode scanning</p>
-      <p class="bento-desc">Point your camera at any barcode. The item lands in your pantry with nutrition data already filled in.</p>
+      <p class="bento-desc">Point at a barcode. Done. Calories, protein, carbs — filled in before you've put the shopping away.</p>
     </div>
     <div class="bento-card bento-c reveal reveal-delay-2">
       <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg></div>
       <p class="bento-title">Spend tracking</p>
-      <p class="bento-desc">Weekly grocery spend pulled straight from scanned receipts.</p>
+      <p class="bento-desc">Weekly spend by category, pulled from your receipts. No manual logging.</p>
     </div>
     <div class="bento-card bento-d reveal reveal-delay-1">
       <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <p class="bento-title">Smart shopping list</p>
-      <p class="bento-desc">Low-stock items appear automatically. Check them off in store and they move straight into your pantry.</p>
+      <p class="bento-desc">Running low on something? It shows up on your list. Check it off at the shop and it moves to your pantry. That's the whole flow.</p>
     </div>
     <div class="bento-card bento-e reveal reveal-delay-2">
       <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
       <p class="bento-title">Meal planning</p>
-      <p class="bento-desc">Plan the week. Fridzo builds the shopping list from your recipes.</p>
+      <p class="bento-desc">Plan Sunday to Saturday. Fridzo writes the shopping list.</p>
     </div>
     <div class="bento-card bento-f reveal">
       <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg></div>
       <p class="bento-title">Receipt scanning</p>
-      <p class="bento-desc">Photograph a grocery receipt and every item lands in your shop list instantly, categorised and priced. No typing required.</p>
+      <p class="bento-desc">Take a photo of your receipt. The whole shop lands in your list, sorted by category, with prices. Nothing to type.</p>
       <div class="bento-scan-visual">
         <div class="scan-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Chicken breast · £4.50</div>
         <div class="scan-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Oat milk · £1.20</div>
@@ -500,7 +523,7 @@
     <div class="bento-card bento-g reveal reveal-delay-1">
       <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
       <p class="bento-title">Nutrition tracking</p>
-      <p class="bento-desc">Calories, protein, carbs, and fat pulled automatically from Open Food Facts when you scan a barcode.</p>
+      <p class="bento-desc">Calories, protein, carbs, and fat pulled straight from Open Food Facts the moment you scan.</p>
     </div>
   </div>
 </section>
@@ -533,7 +556,7 @@
     <div class="reveal reveal-delay-1">
       <p class="miso-eyebrow">Meet your AI chef</p>
       <h2 class="miso-title">This is Miso.<br><em>Always hungry</em> to help.</h2>
-      <p class="miso-desc">Ask what to cook. Get a recipe from what's already in your kitchen. Let Miso plan the week. It knows your pantry and gets better every time you cook.</p>
+      <p class="miso-desc">Ask what to cook. Miso checks your pantry and sends back a recipe. Ask it to plan the week. It knows what you've got, what's expiring, and what you actually like — and it gets sharper every time you cook.</p>
       <a href="https://play.google.com/store" class="btn-amber">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20.5v-17c0-.83 1-1.3 1.7-.8l15 8.5c.67.38.67 1.32 0 1.7l-15 8.5c-.7.5-1.7.03-1.7-.8z"/></svg>
         Download Fridzo, meet Miso
@@ -549,17 +572,17 @@
     <div class="step reveal">
       <div class="step-num">1</div>
       <p class="step-title">Scan your shop</p>
-      <p class="step-desc">Photograph your receipt or scan barcodes as you unpack. Everything lands in your pantry automatically.</p>
+      <p class="step-desc">Take a photo of your receipt or scan a barcode as you unpack. Everything's in your pantry before the bags are away.</p>
     </div>
     <div class="step reveal reveal-delay-1">
       <div class="step-num">2</div>
       <p class="step-title">Ask Miso what to cook</p>
-      <p class="step-desc">Tell Miso what you feel like and it builds a recipe from what you already have. Or let it plan the whole week.</p>
+      <p class="step-desc">Type what you feel like. Miso checks your pantry and comes back with a recipe — or plans the whole week if you ask.</p>
     </div>
     <div class="step reveal reveal-delay-2">
       <div class="step-num">3</div>
       <p class="step-title">Shop smarter</p>
-      <p class="step-desc">Low-stock items appear on your list automatically. Check them off in store and they move straight into your pantry.</p>
+      <p class="step-desc">The list builds itself from what's running low. Check things off as you shop. They go straight into your pantry when you get home.</p>
     </div>
   </div>
 </section>
@@ -567,7 +590,7 @@
 <!-- SCREENSHOT SHOWCASE -->
 <section class="screens-section">
   <p class="section-eyebrow reveal">The full picture</p>
-  <h2 class="section-title reveal reveal-delay-1">Every screen, built to be used.</h2>
+  <h2 class="section-title reveal reveal-delay-1">Four screens. One sorted kitchen.</h2>
   <div class="screens-strip reveal reveal-delay-1">
     <div class="screen-item">
       <div class="screen-phone">
@@ -599,7 +622,7 @@
 <!-- FREE VS PRO -->
 <section class="pricing-section">
   <p class="section-eyebrow reveal">Transparent pricing</p>
-  <h2 class="section-title reveal reveal-delay-1">Free forever.<br>Pro when you need more.</h2>
+  <h2 class="section-title reveal reveal-delay-1">Start free.<br>Upgrade when Miso gets addictive.</h2>
   <div class="pricing-grid reveal reveal-delay-2">
 
     <!-- FREE -->
@@ -686,6 +709,55 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section">
+  <p class="section-eyebrow reveal">Quick answers</p>
+  <h2 class="section-title reveal reveal-delay-1">Questions people ask<br>before downloading.</h2>
+  <div class="faq-list reveal reveal-delay-2">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
+        Is Fridzo actually free?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Yes. Pantry tracking, barcode scanning, shopping list, and meal planning are all free with no time limit and no card required. Fridzo Pro is an optional paid upgrade that adds Miso AI chat, receipt scanning, and spend tracking.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
+        What is Miso and how does it work?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Miso is your AI chef, powered by Claude. Ask it what to cook tonight, get a recipe from your current pantry, or have it plan the whole week. Free accounts get 3 Miso chats per day. Fridzo Pro gets a much higher monthly allowance.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
+        Does receipt scanning work with UK supermarkets?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Yes. Fridzo's receipt scanning works with any printed grocery receipt — Tesco, Sainsbury's, ASDA, Morrisons, Waitrose, Aldi, Lidl, and more. Just photograph the receipt and Fridzo reads the items. Pro feature, 15 scans per day.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
+        Is Fridzo available on iPhone?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Not yet. Fridzo is currently available on Android only via the Google Play Store. iOS is on the roadmap.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
+        How do I cancel Fridzo Pro?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Through Google Play. Open the Play Store, tap your profile, go to Payments and subscriptions, find Fridzo, and cancel. Your Pro access stays until the end of the billing period. No fees, no fuss.</div>
+    </div>
+
+  </div>
+</section>
+
 <section class="cta-section">
   <div class="cta-bg-orb" aria-hidden="true"></div>
   <div class="cta-badge">Free · No card required · Android</div>
@@ -697,7 +769,7 @@
       Get it on Google Play
     </a>
   </div>
-  <p class="cta-note reveal reveal-delay-3">Free pantry tracking, shopping list, meal planning, and barcode scanning.<br>Fridzo Pro unlocks Miso AI chat and receipt scanning.</p>
+  <p class="cta-note reveal reveal-delay-3">Pantry tracking, shopping list, meal planning, and barcode scanning are all free.<br>Fridzo Pro adds Miso AI chat, receipt scanning, and spend tracking.</p>
 </section>
 
 <footer>
@@ -726,6 +798,24 @@
     });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFaq(btn); }
+    });
+  });
 </script>
 </body>
 </html>
