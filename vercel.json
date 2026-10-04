@@ -1,4 +1,28 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "sageapp.app"
+        }
+      ],
+      "destination": "https://www.fridzo.app/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.sageapp.app"
+        }
+      ],
+      "destination": "https://www.fridzo.app/:path*",
+      "permanent": true
+    }
+  ]
 }
